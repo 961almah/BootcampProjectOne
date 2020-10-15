@@ -11,19 +11,16 @@ var uniqueMovies = [];
 $.each(movies, function(i, el){
     if($.inArray(el,uniqueMovies) === -1) uniqueMovies.push(el);
 });
-var title = "";
+ var title = "";
 // make variables for MDB API
-var posterDiv = $("<div class='poster-div'>");
+ var posterDiv = $("<div>");
 $("#movie-search-info").append(posterDiv);
-$(function() {
-    $("#image1").attr("src", "https://example2.com/image2.png")
-})
 // load previous items from local storage and add the enxt one after the movie is added for side bar
-for (var i = 0; i < movies.length; i++){
+ for (var i = 0; i < movies.length; i++){
     var mostRecentSearch = movies.length - 1; 
     var lastSearch = movies[mostRecentSearch];
-    console.log(lastSearch)
-}
+     console.log(lastSearch)
+    }
 
 // make variables for drink API
 
@@ -34,34 +31,18 @@ for (var i = 0; i < movies.length; i++){
 // on search submit click add movie to movie tile in side bar
 $("#movie-search-submit").on("click", function(){
     var title = $("#movie-search").val()
-    movies.push(title)
+    movies.push(title);
+   
 
 var queryURL = "http://www.omdbapi.com/?t=" + title + "&apikey=" + APIkey
 $.ajax ({
     url: queryURL,
     method: "GET"
 }).then(function(response){
-    console.log(response);
+    console.log(response.Poster);
     var moviePoster = response.Poster;
-    var metaScore = response.Metascore;
-    var actors = response.Actors;
-    var director = response.Director;
-    var genre = response.Genre;
-    var rated = response.Rated;
-    var released = response.Released;
-    var movieDetailsList = $("<ul>");
-    movieDetailsList.addClass("list-item");
-    $(".list-item").append('<li>')
-    movieDetailsList.text("Metascore: " + metaScore);
-    movieDetailsList.text("Genre: " + genre);
-    movieDetailsList.text("Rated: " + rated);
-    movieDetailsList.text("Released: " + released);
-    movieDetailsList.text("Director: " + director);
-    var image = $("<img class='search-image'>").attr("src", moviePoster);
-    posterDiv.empty()
-    // add items to the poster div
+    var image = $("<img>").attr("src", moviePoster);
     posterDiv.append(image);
-    posterDiv.append(movieDetailsList)
     // local storage set
     localStorage.setItem("movies", JSON.stringify(movies))
 })
@@ -95,12 +76,3 @@ const settings = {
 $.ajax(settings).done(function (response) {
 	console.log(response);
 });
-
-$("#drama").on("click", function() {
-    document.getElementById("movie-suggestions").style.display = "none";
-    document.getElementById("drama-suggestions").style.display = "block";
-})
-$("#comedy").on("click", function() {
-    document.getElementById("movie-suggestions").style.display = "none";
-    document.getElementById("comedy-suggestions").style.display = "block";
-})

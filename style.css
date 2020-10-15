@@ -1,27 +1,46 @@
-.navbar {
+body {
+  background-color: black;
+}
+.navbar{
   padding-bottom: 0rem;
   margin-bottom: 1rem;
 }
 
-.search-image {
-  width: 100%;
-}
-
-.poster-div {
+#movies img{
   width: 50%;
-  margin-left: 4rem;
-  margin-top: 1rem;
-  font-size: 1rem;
+
 }
 
-#drama-suggestions {
-  display: none;
+.img-container {
+  text-align: center;
+  margin: 20px 0;
 }
 
-#comedy-suggestions {
-  display: none;
+.img-container img {
+  width: 20%;
+  border-radius: 30px;
 }
 
-#movie-suggestions3 {
-  display: none;
+
+.tile {
+  display: block !important;
+  color: cyan;
+}
+
+.hero.is-primary .title {
+  color: cyan !important;
+}
+
+#movie-search-submit, .hero.is-primary {
+  background-color: darkviolet !important;
+}
+
+.hero.is-dark {
+  background-color: black !important;
+}
+
+footer {
+  text-align: center;
+  background-color: gray;
+  margin-top: 30px;
 }
