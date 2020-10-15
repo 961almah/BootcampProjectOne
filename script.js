@@ -104,3 +104,62 @@ $("#comedy").on("click", function() {
     document.getElementById("movie-suggestions").style.display = "none";
     document.getElementById("comedy-suggestions").style.display = "block";
 })
+
+
+// question display ===================================
+
+var questions = [
+    {
+        question: "What genre?",
+        options: [
+            "Comedy",
+            "Horror",
+            "Action"
+        ],
+        answerKey: "genrePick"
+    }
+]
+
+var answers = {}
+
+var currentQuestionIndex = 0
+
+
+function displayQuestion() {
+    $("#question-container .title").text(questions[currentQuestionIndex].question)
+    $("#question-container .buttons").empty();
+    // go throught the current question options
+    // for each one
+        // create a button
+        // add a value
+        // add some text
+        // put the button in the buttons div
+        for (var i=0; i < questions[currentQuestionIndex].options.length; i++) {
+            var option = questions[currentQuestionIndex].options[i];
+            var answerKey = questions[currentQuestionIndex].answerKey;
+            // create a button
+            var button = $("<button class='optionButton button is-dark'>")
+        // add a data-answer attribute
+        button.attr("data-answer", option)
+        button.attr("data-answerKey", answerKey)
+        // add some text
+        button.text(option)
+        // put the button in the buttons div
+        $("#question-container .buttons").append(button)
+        
+        }
+}
+
+displayQuestion();
+
+$(".optionButton").click(function(){
+
+    // put the answer into the answers object
+    answers[$(this).attr("data-answerKey")] = $(this).attr("data-answer");
+    // answers.genrePick = "comedy"
+    // go to the next question
+    currentQuestionIndex++
+    console.log(answers);
+})
+
+
