@@ -6,20 +6,25 @@
 // make API key variables
 var APIkey = "b7c2391a"
 // make variables for OMDB API
-var movies = [];
+var movies = JSON.parse(localStorage.getItem("movies")) || [];
 var uniqueMovies = [];
+$.each(movies, function(i, el){
+    if($.inArray(el,uniqueMovies) === -1) uniqueMovies.push(el);
+});
 var title = "";
 // make variables for MDB API
 var posterDiv = $("<div>");
 $("#movie-search-info").append(posterDiv);
-
-
+// load previous items from local storage and add the enxt one after the movie is added for side bar
+for (var i = 0; i < movies.length; i++){
+    var mostRecentSearch = movies.length - 1; 
+    var lastSearch = movies[mostRecentSearch];
+    console.log(lastSearch)
+}
 
 // make variables for drink API
 
 // variables for searching a movie in the side bar
-var moviePoster = $("<img>")
-
 
 
 
@@ -35,7 +40,10 @@ $.ajax ({
 }).then(function(response){
     console.log(response.Poster);
     var moviePoster = response.Poster;
-    posterDiv.text(moviePoster);
+    var image = $("<img>").attr("src", moviePoster);
+    posterDiv.append(image);
+    // local storage set
+    localStorage.setItem("movies", JSON.stringify(movies))
 })
 })
 
