@@ -1,16 +1,23 @@
-.navbar{
-    padding-bottom: 0rem;
-    margin-bottom: 1rem;
+.navbar {
+  padding-bottom: 0rem;
+  margin-bottom: 1rem;
 }
 
-.search-image{
-    width: 100%;
-
+.search-image {
+  width: 100%;
 }
 
-.poster-div{
-    width: 50%;
-    margin-left: 4rem;
-    margin-top: 1rem;
-    font-size: 1rem;
+.poster-div {
+  width: 50%;
+  margin-left: 4rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+#movie-suggestions2 {
+  display: none;
+}
+
+#movie-suggestions3 {
+  display: none;
 }

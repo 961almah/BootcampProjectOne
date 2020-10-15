@@ -95,3 +95,7 @@ const settings = {
 $.ajax(settings).done(function (response) {
 	console.log(response);
 });
+
+$("#drama").on("click", function() {
+    document.getElementById("movie-suggestions").style.display = "none";
+})
