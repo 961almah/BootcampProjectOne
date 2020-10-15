@@ -14,7 +14,11 @@
   font-size: 1rem;
 }
 
-#movie-suggestions2 {
+#drama-suggestions {
+  display: none;
+}
+
+#comedy-suggestions {
   display: none;
 }
 

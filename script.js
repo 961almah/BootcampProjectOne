@@ -98,4 +98,9 @@ $.ajax(settings).done(function (response) {
 
 $("#drama").on("click", function() {
     document.getElementById("movie-suggestions").style.display = "none";
+    document.getElementById("drama-suggestions").style.display = "block";
+})
+$("#comedy").on("click", function() {
+    document.getElementById("movie-suggestions").style.display = "none";
+    document.getElementById("comedy-suggestions").style.display = "block";
 })
