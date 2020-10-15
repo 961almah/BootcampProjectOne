@@ -14,7 +14,22 @@ $.each(movies, function(i, el){
 var title = "";
 // make variables for MDB API
 var posterDiv = $("<div class='poster-div'>");
+var metascoreP = $("<p class='metascore-p>")
+var genreP = $("<p class='genre-p>")
+var directorP = $("<p class='director-p>")
+var releaseP = $("<p class='release-p>") 
+var ratedP = $("<p class='rated-p>") 
+var actorsP = $("<p class='actors-p>") 
+
 $("#movie-search-info").append(posterDiv);
+$("poster-div").append(metascoreP);
+$("poster-div").append(genreP);
+$("poster-div").append(directorP);
+$("poster-div").append(releaseP);
+$("poster-div").append(ratedP);
+$("poster-div").append(actorsP);
+
+
 $(function() {
     $("#image1").attr("src", "https://example2.com/image2.png")
 })
@@ -49,34 +64,53 @@ $.ajax ({
     var genre = response.Genre;
     var rated = response.Rated;
     var released = response.Released;
-    var movieDetailsList = $("<ul>");
-    movieDetailsList.addClass("list-item");
-    $(".list-item").append('<li>')
-    movieDetailsList.text("Metascore: " + metaScore);
-    movieDetailsList.text("Genre: " + genre);
-    movieDetailsList.text("Rated: " + rated);
-    movieDetailsList.text("Released: " + released);
-    movieDetailsList.text("Director: " + director);
+   
+    
+    // movieDetailsList.text("Genre: " + genre);
+    // movieDetailsList.text("Rated: " + rated);
+    // movieDetailsList.text("Released: " + released);
+    // movieDetailsList.text("Director: " + director);
     var image = $("<img class='search-image'>").attr("src", moviePoster);
     posterDiv.empty()
     // add items to the poster div
     posterDiv.append(image);
-    posterDiv.append(movieDetailsList)
+    posterDiv.append("Metascore: " + metaScore);
+    posterDiv.append("Director: " + director);
+    posterDiv.append("Genre :" + genre);
+    posterDiv.append("Release Date: " + released);
+    posterDiv.append("Movie Rating: " + rated);
+    posterDiv.append("Starring: " + actors);
+    
     // local storage set
     localStorage.setItem("movies", JSON.stringify(movies))
 })
 })
 
-
+var popularArray = []
 var APIkey1 = "a46d6d3d751f284d301081cabfeabbc3"
-var queryURL1 = "https://api.themoviedb.org/3/trending/all/day?api_key=" + APIkey1
+var queryURL1 = "https://api.themoviedb.org/3/movie/popular?api_key=" + APIkey1 + "&language=en-US&page=1"
+
 
 $.ajax ({
     url: queryURL1,
     method: "GET"
 }).then(function(response){
     console.log(response)
+    popularArray = response.results;
+    console.log("result", popularArray);
+    console.log('popularityDataType', typeof(popularArray[0].popularity));
+    var sortedPopularArray = popularArray.sort(function(a,b){
+        return b.popularity - a.popularity;
+    }).slice(0,10);
+    console.log("sortedPopularArray", sortedPopularArray)
 })
+
+
+
+// popularArray.sort(function(a,b){
+//     return a.value - b.value
+// })
+// sort array method 
 
 
 
@@ -104,3 +138,62 @@ $("#comedy").on("click", function() {
     document.getElementById("movie-suggestions").style.display = "none";
     document.getElementById("comedy-suggestions").style.display = "block";
 })
+
+
+// question display ===================================
+
+var questions = [
+    {
+        question: "What genre?",
+        options: [
+            "Comedy",
+            "Horror",
+            "Action"
+        ],
+        answerKey: "genrePick"
+    }
+]
+
+var answers = {}
+
+var currentQuestionIndex = 0
+
+
+function displayQuestion() {
+    $("#question-container .title").text(questions[currentQuestionIndex].question)
+    $("#question-container .buttons").empty();
+    // go throught the current question options
+    // for each one
+        // create a button
+        // add a value
+        // add some text
+        // put the button in the buttons div
+        for (var i=0; i < questions[currentQuestionIndex].options.length; i++) {
+            var option = questions[currentQuestionIndex].options[i];
+            var answerKey = questions[currentQuestionIndex].answerKey;
+            // create a button
+            var button = $("<button class='optionButton button is-dark'>")
+        // add a data-answer attribute
+        button.attr("data-answer", option)
+        button.attr("data-answerKey", answerKey)
+        // add some text
+        button.text(option)
+        // put the button in the buttons div
+        $("#question-container .buttons").append(button)
+        
+        }
+}
+
+displayQuestion();
+
+$(".optionButton").click(function(){
+
+    // put the answer into the answers object
+    answers[$(this).attr("data-answerKey")] = $(this).attr("data-answer");
+    // answers.genrePick = "comedy"
+    // go to the next question
+    currentQuestionIndex++
+    console.log(answers);
+})
+
+
