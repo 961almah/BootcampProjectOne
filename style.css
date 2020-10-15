@@ -3,7 +3,14 @@
     margin-bottom: 1rem;
 }
 
-#movies img{
-    width: 50%;
+.search-image{
+    width: 100%;
 
+}
+
+.poster-div{
+    width: 50%;
+    margin-left: 4rem;
+    margin-top: 1rem;
+    font-size: 1rem;
 }

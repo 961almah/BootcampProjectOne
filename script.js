@@ -13,8 +13,11 @@ $.each(movies, function(i, el){
 });
 var title = "";
 // make variables for MDB API
-var posterDiv = $("<div>");
+var posterDiv = $("<div class='poster-div'>");
 $("#movie-search-info").append(posterDiv);
+$(function() {
+    $("#image1").attr("src", "https://example2.com/image2.png")
+})
 // load previous items from local storage and add the enxt one after the movie is added for side bar
 for (var i = 0; i < movies.length; i++){
     var mostRecentSearch = movies.length - 1; 
@@ -38,10 +41,27 @@ $.ajax ({
     url: queryURL,
     method: "GET"
 }).then(function(response){
-    console.log(response.Poster);
+    console.log(response);
     var moviePoster = response.Poster;
-    var image = $("<img>").attr("src", moviePoster);
+    var metaScore = response.Metascore;
+    var actors = response.Actors;
+    var director = response.Director;
+    var genre = response.Genre;
+    var rated = response.Rated;
+    var released = response.Released;
+    var movieDetailsList = $("<ul>");
+    movieDetailsList.addClass("list-item");
+    $(".list-item").append('<li>')
+    movieDetailsList.text("Metascore: " + metaScore);
+    movieDetailsList.text("Genre: " + genre);
+    movieDetailsList.text("Rated: " + rated);
+    movieDetailsList.text("Released: " + released);
+    movieDetailsList.text("Director: " + director);
+    var image = $("<img class='search-image'>").attr("src", moviePoster);
+    posterDiv.empty()
+    // add items to the poster div
     posterDiv.append(image);
+    posterDiv.append(movieDetailsList)
     // local storage set
     localStorage.setItem("movies", JSON.stringify(movies))
 })
