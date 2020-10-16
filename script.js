@@ -50,7 +50,6 @@ for (var i = 0; i < movies.length; i++){
 $("#movie-search-submit").on("click", function(){
     var title = $("#movie-search").val()
     movies.push(title)
-
 var queryURL = "http://www.omdbapi.com/?t=" + title + "&apikey=" + APIkey
 $.ajax ({
     url: queryURL,
@@ -126,9 +125,7 @@ const settings = {
 	}
 };
 
-$.ajax(settings).done(function (response) {
-	console.log(response);
-});
+
 
 $("#drama").on("click", function() {
     document.getElementById("movie-suggestions").style.display = "none";
@@ -151,8 +148,45 @@ var questions = [
             "Action"
         ],
         answerKey: "genrePick"
-    }
+    },
+
+    {
+        question: "Minimum allowable metascore value?",
+        options: [
+            25,
+            50,
+            75,
+        ],
+        answerKey: "metascorePick"
+    },
+
+    {
+        question: "maximum movie length (minutes)",
+        options: [
+            90,
+            120,
+            150,
+        ],
+        answerKey: "movieLengthPick"
+    },
 ]
+
+// AJAX call for movie rec
+function getMovieRec () {
+    var queryURL2 = "https://api.themoviedb.org/3/discover/movie?api_key=" + APIkey1 + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1"
+$.ajax ({
+    url: queryURL2,
+    method: "GET"
+}).then(function(response){
+    console.log(response);
+    $("#question-container .title").text(response.results[0].title)
+    $(".buttons").text("")
+    $.ajax(settings).done(function (drinksList) {
+        console.log(drinksList);
+        var randomDrink = drinksList.drinks[0].strDrink;
+        $(".buttons").text(randomDrink)
+    });
+})}
 
 var answers = {}
 
@@ -162,17 +196,16 @@ var currentQuestionIndex = 0
 function displayQuestion() {
     $("#question-container .title").text(questions[currentQuestionIndex].question)
     $("#question-container .buttons").empty();
+    // go through each question
+   
     // go throught the current question options
     // for each one
-        // create a button
-        // add a value
-        // add some text
-        // put the button in the buttons div
         for (var i=0; i < questions[currentQuestionIndex].options.length; i++) {
             var option = questions[currentQuestionIndex].options[i];
             var answerKey = questions[currentQuestionIndex].answerKey;
             // create a button
             var button = $("<button class='optionButton button is-dark'>")
+
         // add a data-answer attribute
         button.attr("data-answer", option)
         button.attr("data-answerKey", answerKey)
@@ -180,20 +213,27 @@ function displayQuestion() {
         button.text(option)
         // put the button in the buttons div
         $("#question-container .buttons").append(button)
-        
+// run function for second question
+
         }
+        $(".optionButton").click(function(){
+
+            // put the answer into the answers object
+            answers[$(this).attr("data-answerKey")] = $(this).attr("data-answer");
+            // answers.genrePick = "comedy"
+            // go to the next question
+            currentQuestionIndex++
+            console.log(answers);
+           if (currentQuestionIndex < 3) displayQuestion();
+            else {getMovieRec()}
+        })
+        
 }
 
 displayQuestion();
 
-$(".optionButton").click(function(){
 
-    // put the answer into the answers object
-    answers[$(this).attr("data-answerKey")] = $(this).attr("data-answer");
-    // answers.genrePick = "comedy"
-    // go to the next question
-    currentQuestionIndex++
-    console.log(answers);
-})
+
+
 
 
