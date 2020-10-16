@@ -6,14 +6,14 @@
    <link rel="stylesheet" href="style.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-   <title>Drink a Movie</title>
+   <title>BoozieNight</title>
  </head>
  <body>
 <!-- Main container -->
-<nav class="navbar has-background-light" role="navigation" aria-label="main navigation">
+<nav id="navbar-styles" class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <a class="navbar-item" href="index.html">
-        <img src="image.png" width=".4rem" height=".2rem">
+        <img src="image.png" width=".5rem" height=".5rem">
       </a>
   
       <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -73,7 +73,7 @@
   </nav>
  
  <div class="container">
-     <div class="columns">
+     <div class="columns" class="left-right-column">
      <div class="column is-one-quarter" style="background: rgb(46, 207, 207)">
         <div class="field">
          <p class="control">
@@ -99,64 +99,46 @@
        </div>
      </div>
    </div>
-   <div class="column is-three-quarters">
+   <div class="column is-three-quarters" id="right-column">
      <!-- display -->
        <section id="question-container" class="hero is-primary is-medium" style="background-color: rgba(130, 48, 207, 0.993)">
            <div id="hidethis" class="hero-body">
-             <div class="container">
+             <div id="main-content-div" class="container">
+               <div class = "columns">
+                 <div class = "column is one-half">
                 <h2 class="title">
-                   What kind of movie do you what to watch?
                 </h2>
-                <h2 class="subtitle">
                   <div class="buttons">
-                    <button id="drama" class="button is-dark">Drama</button>
-                    <button id="comedy" class="button is-link">Comedy</button>
                   </div>
-                </h2>
+                  </div>
+                  <div id="boozienight-logo" class="column is one-half">
+                  </div>
+                  </div>
              </div>
            </div>
          </section>
-         <!-- drama display -->
-         <section id="drama-suggestions" class="hero is-primary is-medium">
-          <div class="hero-body">
-            <div class="container">
-               <h2 class="title">
-                  Some suggestion about drama?
-               </h2>
-               <h2 class="subtitle">
-                 <div class="buttons">
-                   <button class="button is-dark">Drama option A</button>
-                   <button class="button is-link">Drama option B</button>
-                 </div>
-               </h2>
-            </div>
-          </div>
-        </section>
-        <section id="comedy-suggestions" class="hero is-primary is-medium">
-          <div class="hero-body">
-            <div class="container">
-               <h2 class="title">
-                  Some suggestion about comedyadd puah?
-               </h2>
-               <h2 class="subtitle">
-                 <div class="buttons">
-                   <button class="button is-dark">Comedy option A</button>
-                   <button class="button is-link">Comedy option B</button>
-                 </div>
-               </h2>
-            </div>
-          </div>
-        </section>
          <!--  -->
          <section id="top-ten-movies" class="hero is-dark" style="background-color: rgb(214, 57, 141);">
            <div class="hero-body">
-             <div class="container">
+             <div class="container" id="top-ten-container">
                <h1 class="title">
-                 Top ten movies
+                 TOP FIVE MOVIES
                </h1>
-               <h2 class="subtitle">
-                 Primary subtitle
-               </h2>
+               <div id="top-ten-movies">
+                <div class="columns">
+                  <div class="column column is-one-fifth" id="moviePoster1"> 
+                  </div>
+                  <div class="column column is-one-fifth" id="moviePoster2">
+                  </div>
+                  <div class="column column is-one-fifth" id="moviePoster3">
+                    
+                  </div>
+                  <div class="column column is-one-fifth" id="moviePoster4">
+                  </div>
+                  <div class="column column is-one-fifth" id="moviePoster5">
+                  </div>
+                </div>
+               </div>
              </div>
            </div>
          </section>

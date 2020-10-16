@@ -26,6 +26,7 @@
     margin-left: 4rem;
     margin-top: 1rem;
     font-size: 1rem;
+    
   }
    
   #drama-suggestions {
@@ -37,7 +38,7 @@
   }
    
   #question-container {
-    margin-bottom: 15px;
+    margin-bottom: 0;
     height: 450px;
   }
    
@@ -60,3 +61,30 @@
   }
    
   
+  #top-ten-movies{
+    width: 100%;
+  }
+
+  #top-ten-container{
+    width: 100%;
+  }
+
+  #right-column{
+    padding: 0;
+  }
+
+  #navbar-styles{
+    background-color: lightgray;
+    color: white;
+    padding-bottom: 0rem;
+    margin-bottom: 1rem;
+  }
+  #main-content-div{
+    width:100%;
+  }
+
+  #boozienight-picture{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+  }
