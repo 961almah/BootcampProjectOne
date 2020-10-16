@@ -73,8 +73,8 @@ $.ajax ({
     posterDiv.empty()
     // add items to the poster div
     posterDiv.append(image);
-    posterDiv.append("Metascore: " + metaScore);
-    posterDiv.append("Director: " + director);
+    posterDiv.append("Metascore: " + metaScore) + " ";
+    posterDiv.append("  Director: " + director);
     posterDiv.append("Genre :" + genre);
     posterDiv.append("Release Date: " + released);
     posterDiv.append("Movie Rating: " + rated);
@@ -87,7 +87,7 @@ $.ajax ({
 
 var popularArray = []
 var APIkey1 = "a46d6d3d751f284d301081cabfeabbc3"
-var queryURL1 = "https://api.themoviedb.org/3/movie/popular?api_key=" + APIkey1 + "&language=en-US&page=1"
+var queryURL1 = "https://api.themoviedb.org/3/trending/all/day?api_key=" + APIkey1 + "&language=en-US&page=1"
 
 
 $.ajax ({
@@ -102,7 +102,31 @@ $.ajax ({
         return b.popularity - a.popularity;
     }).slice(0,10);
     console.log("sortedPopularArray", sortedPopularArray)
+    var popularMoviePosterURL = popularArray[0].poster_path
+    var mulanPoster = "images/mulan.jpg"
+    var avengersPoster = "images/avengers.jpg"
+    var birdsofpreyPoster = "images/birdsofprey.jpg"
+    var tenetPoster = "images/tenet.jpg"
+    var newMutantsPoster = "images/newmutants.jpg"
+    var popularMovieImage = $("<img class='popularMoviePoster' height=150px width=150px>").attr("src", mulanPoster);
+    var popularMovieImage1 = $("<img class='popularMoviePoster1' height=150px width=150px>").attr("src", tenetPoster);
+    var popularMovieImage2 = $("<img class='popularMoviePoster2' height=150px width=150px>").attr("src", avengersPoster);
+    var popularMovieImage3 = $("<img class='popularMoviePoster3' height=150px width=150px>").attr("src", newMutantsPoster);
+    var popularMovieImage4 = $("<img class='popularMoviePoster4' height=150px width=150px>").attr("src", birdsofpreyPoster);
+
+
+
+    $("#moviePoster1").append(popularMovieImage) 
+    $("#moviePoster2").append(popularMovieImage1)
+    $("#moviePoster3").append(popularMovieImage2)
+    $("#moviePoster4").append(popularMovieImage3)
+    $("#moviePoster5").append(popularMovieImage4)
+var boozieNight = "image.png"
+var boozieNightImage = $("<img class='BoozieNightLogo' height=50% width=50%>").attr("src", boozieNight);
+$("#boozienight-logo").append(boozieNightImage) 
+
 })
+
 
 
 
