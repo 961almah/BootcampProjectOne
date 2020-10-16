@@ -1,23 +1,62 @@
-.navbar {
-  padding-bottom: 0rem;
-  margin-bottom: 1rem;
-}
-
-.search-image {
-  width: 100%;
-}
-
-.poster-div {
-  width: 50%;
-  margin-left: 4rem;
-  margin-top: 1rem;
-  font-size: 1rem;
-}
-
-#drama-suggestions {
-  display: none;
-}
-
-#comedy-suggestions {
-  display: none;
-}
+:root {
+    background-color: aliceblue;
+    color: aliceblue;
+  }
+   
+  * {
+    /* adding border box adds width to the calculated border of size*/
+    box-sizing: border-box;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    /* set margin and padding to 0 to control setting to the fullest */
+    margin: 0;
+    padding: 0;
+  }
+   
+  .navbar {
+    padding-bottom: 0rem;
+    margin-bottom: 1rem;
+  }
+   
+  .search-image {
+    width: 100%;
+  }
+   
+  .poster-div {
+    width: 50%;
+    margin-left: 4rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+  }
+   
+  #drama-suggestions {
+    display: none;
+  }
+   
+  #comedy-suggestions {
+    display: none;
+  }
+   
+  #question-container {
+    margin-bottom: 15px;
+    height: 450px;
+  }
+   
+  .buttons {
+    /* style button */
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    width: 17rem;
+    text-align: center;
+    text-decoration: none;
+  }
+   
+  .buttons:hover {
+    cursor: pointer;
+    /* give box shadow */
+    box-shadow: 0 0.5rem 1.5rem 0 rgba(116, 3, 116, 0.5);
+    /* When hovering, make box slowly move up location */
+    transform: translateY(-0.1rem);
+    transition: transform 0ms;
+  }
+   
+  

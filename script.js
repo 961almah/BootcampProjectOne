@@ -179,14 +179,39 @@ $.ajax ({
     method: "GET"
 }).then(function(response){
     console.log(response);
-    $("#question-container .title").text(response.results[0].title)
-    $(".buttons").text("")
+    var keys = Object.keys(response.results);
+    var randIndex = Math.floor(Math.random() * keys.length)
+    var randKey = keys[randIndex]
+    var randomMovie = response.results[randKey]
+    var randomMoviePoster = randomMovie._path
+    console.log(randomMovie)
+    $("#question-container .title").text(randomMovie.title)
+    var randomMovieImage = $("<img class='randomMovie-image'>").attr("src", randomMoviePoster);
+
+    // add items to the poster div
+    $("#question-container").append(randomMovieImage);
+    $("#question-container .buttons").text("")
     $.ajax(settings).done(function (drinksList) {
         console.log(drinksList);
-        var randomDrink = drinksList.drinks[0].strDrink;
-        $(".buttons").text(randomDrink)
+        var keys = Object.keys(drinksList.drinks)
+        var randIndex = Math.floor(Math.random() * keys.length)
+        var randKey = keys[randIndex]
+        var randomDrink = drinksList.drinks[randKey]
+        console.log(randomDrink)
+       
+   
+
+        var drink = randomDrink.strDrink;
+        var randomDrinkImage = $("<img class='randomMovie-image'>").attr("src", randomDrinkImage);
+
+        $("#question-container .buttons").text(drink)
+        
+
     });
+    
 })}
+
+
 
 var answers = {}
 
